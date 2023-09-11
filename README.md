@@ -1,1 +1,1 @@
-Compile usine `make compile`
+Compile usine `make ligo-compile`
