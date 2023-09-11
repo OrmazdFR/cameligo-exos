@@ -1,5 +1,5 @@
 LIGO_VERSION=0.72.0
-LIGO=docker run -v $(PWD):$(PWD) -w $(PWD) ligolang/ligo:$(LIGO_VERSION)
+LIGO=docker run -v $(PWD):$(PWD) -w $(PWD) --rm ligolang/ligo:$(LIGO_VERSION)
 
 #####################
 
