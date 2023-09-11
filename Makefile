@@ -8,8 +8,8 @@ help:
 
 #####################
 
-compile:
+ligo-compile:
 	@echo "Compiling Tezos contract..."
-	@$(LIGO) compile contract contracts/main.mligo
+	@$(LIGO) compile contract contracts/main.mligo --output-file compile/main.tz
 
 #####################
