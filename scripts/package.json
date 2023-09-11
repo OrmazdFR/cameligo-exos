@@ -8,5 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@taquito/signer": "^17.3.0",
+    "@taquito/taquito": "^17.3.0",
+    "@taquito/utils": "^17.3.0"
+  }
 }
