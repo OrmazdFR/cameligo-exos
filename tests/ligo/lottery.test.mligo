@@ -1,4 +1,5 @@
 #import "./helpers/bootstrap.mligo" "Bootstrap"
+#import "../../contracts/errors.mligo" "Contract_Errors"
 
 let () = Test.log("[LOTTERY] Testing entrypoints for contract")
 
@@ -14,7 +15,7 @@ let test_failure_submitnumber_duplicatenumber =
 	let test_result : test_exec_result = Test.transfer_to_contract contr (SubmitNumber(10n)) 0mutez in
 	let () = Test.log(test_result) in
 	let () = match test_result with
-		| Fail (Rejected (actual,_)) -> assert (actual = (Test.eval "Number already picked"))
+		| Fail (Rejected (actual,_)) -> assert (actual = (Test.eval Contract_Errors.number_already_picked))
 
 		| Fail (Balance_too_low _err) -> Test.failwith ("Balance is too low")
 		| Fail _ -> Test.failwith ("contract failed for an unknown reason")
@@ -28,7 +29,7 @@ let test_failure_submitnumber_admincannotplay =
 	let () = Test.set_source admin in
 	let test_result : test_exec_result = Test.transfer_to_contract contr (SubmitNumber(10n)) 0mutez in
 	let () = match test_result with
-		| Fail (Rejected (actual,_)) -> assert (actual = (Test.eval "Admin cannot submit number"))
+		| Fail (Rejected (actual,_)) -> assert (actual = (Test.eval Contract_Errors.admin_can_not_play))
 
 		| Fail (Balance_too_low _err) -> Test.failwith ("Balance is too low")
 		| Fail _ -> Test.failwith ("contract failed for an unknown reason")
