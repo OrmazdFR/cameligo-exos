@@ -14,3 +14,7 @@ ligo-compile:
 	@$(LIGO) compile contract contracts/lottery.mligo --michelson-format json --output-file compile/lottery.json
 
 #####################
+
+ligo-test:
+	@echo "Running tests on Tezos Contract"
+	@$(LIGO) run test ./tests/ligo/lottery.test.mligo
