@@ -10,7 +10,7 @@ help:
 
 ligo-compile:
 	@echo "Compiling Tezos contract..."
-	@$(LIGO) compile contract contracts/main.mligo --output-file compile/main.tz
-	@$(LIGO) compile contract contracts/main.mligo --michelson-format json --output-file compile/main.json
+	@$(LIGO) compile contract contracts/lottery.mligo --output-file compile/lottery.tz
+	@$(LIGO) compile contract contracts/lottery.mligo --michelson-format json --output-file compile/lottery.json
 
 #####################
