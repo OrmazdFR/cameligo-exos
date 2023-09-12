@@ -36,7 +36,7 @@ let check_winner (n : nat) (store : storage) : storage =
     None -> failwith "Number not picked"
   | Some (n) -> {store with winner = Some (n)}
 
-let main (action, store : parameter * storage) : return =
+let main (action : parameter) (store : storage) : return =
   ([] : operation list),
   (match action with
      SubmitNumber (n) -> submit_number n store
