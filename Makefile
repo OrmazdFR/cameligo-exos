@@ -8,16 +8,29 @@ help:
 
 #####################
 
-ligo-compile:
+ligo-compile: lottery
 	@echo "Compiling Tezos contract..."
-	@$(LIGO) compile contract contracts/lottery.mligo --output-file compile/lottery.tz
-	@$(LIGO) compile contract contracts/lottery.mligo --michelson-format json --output-file compile/lottery.json
+	@$(LIGO) compile contract contracts/$^.mligo --output-file compile/$^.tz
+	@$(LIGO) compile contract contracts/$^.mligo --michelson-format json --output-file compile/$^.json
 
 #####################
 
-ligo-test:
+ligo-test: lottery
 	@echo "Running tests on Tezos Contract"
-	@$(LIGO) run test ./tests/ligo/lottery.test.mligo
+	@$(LIGO) run test ./tests/ligo/$^.test.mligo
+
+#####################
 
 run-deploy:
 	@npm --prefix ./scripts/ run deploy
+
+#####################
+
+all: install ligo-compile ligo-test run-deploy
+	@echo "Compiling, testing and deploy code"
+
+
+#####################
+
+install:
+	@npm --prefix ./scripts install
