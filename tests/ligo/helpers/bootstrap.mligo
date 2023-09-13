@@ -1,9 +1,11 @@
 #import "../../../contracts/lottery.mligo" "Lottery"
+#import "../../../contracts/types.mligo" "Types"
+
 type originated =
   {
    addr : address;
-   t_addr : (Lottery.parameter, Lottery.storage) typed_address;
-   contr : Lottery.parameter contract
+   t_addr : (Lottery.Parameter.t, Lottery.Storage.t) typed_address;
+   contr : Lottery.Parameter.t contract
   }
 
 let bootstrap_accounts () =
@@ -19,7 +21,7 @@ let initial_storage(initial_admin : address) =
   {
    admin = initial_admin;
    winner = (None : address option);
-   numbers = (Map.empty : Lottery.numbers);
+   numbers = (Map.empty : Types.numbers);
   }
 
 let initial_balance = 0mutez
