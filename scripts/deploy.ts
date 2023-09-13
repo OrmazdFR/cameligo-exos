@@ -1,7 +1,9 @@
+import {char2Bytes } from "@taquito/utils"
 import { InMemorySigner } from "@taquito/signer";
 import { MichelsonMap, TezosToolkit } from "@taquito/taquito";
 
 import code from "../compile/lottery.json"
+import metadataJson from "./metadata.json"
 import * as dotenv from 'dotenv';
 dotenv.config(( { path: '../.env' } ));
 
@@ -18,7 +20,6 @@ Tezos.tz.getBalance(publicKey)
 	.catch((error) => console.log(JSON.stringify(error)));
 
 // importKey(Tezos, privateKey)
-console.log(code);
 
 const deploy = async () => {
 	try {
@@ -26,7 +27,11 @@ const deploy = async () => {
 		const storage = {
 			admin: publicKey, // vu qu'on veut que ça soit nous et qu'on l'a défini dans le .env
 			winner: null, // il n'y a pas de winner quand on initialise le contrat
-			numbers: new MichelsonMap() // on a défini un type numbers = (nat, address) map. **map**, du coup : https://tezostaquito.io/docs/michelsonmap/
+			numbers: new MichelsonMap(), // on a défini un type numbers = (nat, address) map. **map**, du coup : https://tezostaquito.io/docs/michelsonmap/
+			metadata: MichelsonMap.fromLiteral({
+				"" : char2Bytes("tezos-storage:jsonFile"),
+				"jsonFile": char2Bytes(JSON.stringify(metadataJson))
+			}),
 		}
 
 		const origination = await Tezos.contract.originate({
