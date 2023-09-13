@@ -1,3 +1,4 @@
 .ligo/term_acceptance
 node_modules
 .env
+contracts/tzip7
