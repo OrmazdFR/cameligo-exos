@@ -60,5 +60,15 @@
                  UPDATE 1 }
                { DROP 3 ; PUSH string "Number already picked" ; FAILWITH } } ;
          NIL operation ;
-         PAIR } }
+         PAIR } ;
+  view "check_winner"
+       nat
+       address
+       { UNPAIR ;
+         SWAP ;
+         CAR ;
+         CDR ;
+         SWAP ;
+         GET ;
+         IF_NONE { PUSH string "Number not picked" ; FAILWITH } {} } }
 

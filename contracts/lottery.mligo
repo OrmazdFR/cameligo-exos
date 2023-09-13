@@ -32,3 +32,9 @@ let main (action : Parameter.t) (store : Storage.t) : return =
   (match action with
      SubmitNumber (n) -> submit_number n store
    | CheckWinner (n) -> check_winner n store)
+
+[@view] let check_winner (n : nat) (store : Storage.t) : address =
+  let map_opt : address option = Map.find_opt n store.numbers in
+  match map_opt with
+    None -> failwith Errors.number_not_picked
+  | Some (addr) -> addr
