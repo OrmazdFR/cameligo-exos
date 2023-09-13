@@ -39,6 +39,7 @@ const deploy = async () => {
 			storage: storage
 		})
 		console.log(origination.contractAddress);
+		return origination.contractAddress;
 	} catch (error) {
 		console.log(error);
 	}

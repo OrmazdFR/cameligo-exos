@@ -18,3 +18,6 @@ ligo-compile:
 ligo-test:
 	@echo "Running tests on Tezos Contract"
 	@$(LIGO) run test ./tests/ligo/lottery.test.mligo
+
+run-deploy:
+	@npm --prefix ./scripts/ run deploy
