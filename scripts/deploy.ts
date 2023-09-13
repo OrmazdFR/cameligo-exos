@@ -1,3 +1,4 @@
+import { outputFile } from 'fs-extra'
 import {char2Bytes } from "@taquito/utils"
 import { InMemorySigner } from "@taquito/signer";
 import { MichelsonMap, TezosToolkit } from "@taquito/taquito";
@@ -21,6 +22,10 @@ Tezos.tz.getBalance(publicKey)
 
 // importKey(Tezos, privateKey)
 
+const saveContractAddress = (path: string, address: string) => {
+	outputFile(path, address)
+}
+
 const deploy = async () => {
 	try {
 		// les const de storage viennent de lottery.mligo
@@ -39,7 +44,8 @@ const deploy = async () => {
 			storage: storage
 		})
 		console.log(origination.contractAddress);
-		return origination.contractAddress;
+
+		saveContractAddress("deployed_contract", origination.contractAddress);
 	} catch (error) {
 		console.log(error);
 	}
