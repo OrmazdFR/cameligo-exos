@@ -22,8 +22,9 @@ Tezos.tz.getBalance(publicKey)
 
 // importKey(Tezos, privateKey)
 
-const saveContractAddress = (path: string, address: string) => {
-	outputFile(path, address)
+const saveContractAddress = (name: string, address: string) => {
+	outputFile(`deployments/${name}.ts`,
+	`export default "${address}"`)
 }
 
 const deploy = async () => {
