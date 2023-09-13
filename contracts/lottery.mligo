@@ -1,22 +1,10 @@
-#import "./types.mligo" "Types"
+#import "./storage.mligo" "Storage"
+#import "./parameter.mligo" "Parameter"
 #import "./errors.mligo" "Errors"
 
-type numbers = (nat, address) map
+type return = operation list * Storage.t
 
-type storage =
-  {
-   admin : address;
-   winner : address option;
-   numbers : numbers
-  }
-
-type parameter =
-| SubmitNumber of nat
-| CheckWinner of nat
-
-type return = operation list * storage
-
-let submit_number (n : nat) (store : storage) : storage =
+let submit_number (n : nat) (store : Storage.t) : Storage.t =
   let () =
     if (Tezos.get_sender () = store.admin)
     then (failwith Errors.admin_can_not_play) in
@@ -30,7 +18,7 @@ let submit_number (n : nat) (store : storage) : storage =
       let new_numbers = Map.add n (Tezos.get_sender ()) store.numbers in
       {store with numbers = new_numbers}
 
-let check_winner (n : nat) (store : storage) : storage =
+let check_winner (n : nat) (store : Storage.t) : Storage.t =
   let () =
     if (store.admin <> Tezos.get_sender ())
     then (failwith Errors.only_admin) in
@@ -39,7 +27,7 @@ let check_winner (n : nat) (store : storage) : storage =
     None -> failwith Errors.number_not_picked
   | Some (n) -> {store with winner = Some (n)}
 
-let main (action : parameter) (store : storage) : return =
+let main (action : Parameter.t) (store : Storage.t) : return =
   ([] : operation list),
   (match action with
      SubmitNumber (n) -> submit_number n store
