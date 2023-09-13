@@ -1,5 +1,4 @@
 #import "../../../contracts/lottery.mligo" "Lottery"
-#import "../../../contracts/types.mligo" "Types"
 
 type originated =
   (
@@ -21,7 +20,7 @@ let initial_storage(initial_admin : address) =
   {
    admin = initial_admin;
    winner = (None : address option);
-   numbers = (Map.empty : Types.numbers);
+   numbers = (Map.empty : Lottery.Storage.Types.numbers);
   }
 
 let initial_balance = 0mutez
