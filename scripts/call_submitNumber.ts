@@ -9,9 +9,16 @@ import contractAddress from "./deployments/deployed_contract"
 import * as dotenv from 'dotenv';
 dotenv.config(({ path: '.env' }));
 
-const TezosNodeRPC: string = process.env.TEZOS_NODE_URL
-const publicKey: string = accounts.sandbox.bob.publicKey;
-const privateKey: string = accounts.sandbox.bob.privateKey;
+const network = process.env.TEZ_NETWORK;
+if (network == "mainnet") {
+	console.log("about to deploy on mainnet, ctrl+c to abort");
+}
+const TezosNodeRPC: string = networks[network.toLowerCase()].node_url
+console.log(`Tezos Node RPC : ${TezosNodeRPC}`);
+
+const publicKey: string = accounts[network.toLowerCase()].bob.publicKey;
+const privateKey: string = accounts[network.toLowerCase()].bob.privateKey;
+
 
 const signature = new InMemorySigner(privateKey);
 const Tezos = new TezosToolkit(TezosNodeRPC);
