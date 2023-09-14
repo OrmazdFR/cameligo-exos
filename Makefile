@@ -44,3 +44,7 @@ sandbox-start:
 
 sandbox-stop:
 	@docker stop flextesa-sandbox
+
+sandbox-exec:
+	@docker exec flextesa-sandbox octez-client get balance for alice
+	@docker exec flextesa-sandbox octez-client get balance for bob
