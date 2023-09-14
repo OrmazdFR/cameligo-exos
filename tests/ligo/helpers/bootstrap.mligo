@@ -20,7 +20,7 @@ let initial_storage(initial_admin : address) = {
    admin = initial_admin;
    winner = (None : address option);
    numbers = (Map.empty : Lottery.Storage.Types.numbers);
-   metadata = (Big_map.empty : Lottery.Storage.Types.metadata)
+  //  metadata = (Big_map.empty : Lottery.Storage.Types.metadata)
 }
 
 let initial_balance = 0mutez
