@@ -8,16 +8,16 @@ help:
 
 #####################
 
-ligo-compile: lottery
+ligo-compile:
 	@echo "Compiling Tezos contract..."
-	@$(LIGO) compile contract contracts/$^.mligo --output-file compile/$^.tz
-	@$(LIGO) compile contract contracts/$^.mligo --michelson-format json --output-file compile/$^.json
+	@$(LIGO) compile contract contracts/lottery.mligo --output-file compile/lottery.tz
+	@$(LIGO) compile contract contracts/lottery.mligo --michelson-format json --output-file compile/lottery.json
 
 #####################
 
-ligo-test: lottery
+ligo-test:
 	@echo "Running tests on Tezos Contract"
-	@$(LIGO) run test ./tests/ligo/$^.test.mligo
+	@$(LIGO) run test ./tests/ligo/lottery.test.mligo
 
 #####################
 
