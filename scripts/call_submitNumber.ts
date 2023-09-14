@@ -1,10 +1,10 @@
 import { InMemorySigner } from "@taquito/signer";
 import { TezosToolkit } from "@taquito/taquito";
 
-import contractAddress from "../deployments/deployed_contract"
+import contractAddress from "./deployments/deployed_contract"
 
 import * as dotenv from 'dotenv';
-dotenv.config(({ path: '../.env' }));
+dotenv.config(({ path: '.env' }));
 
 const TezosNodeRPC: string = process.env.TEZOS_NODE_URL
 const publicKey: string = process.env.ADMIN_PUBLIC_KEY;

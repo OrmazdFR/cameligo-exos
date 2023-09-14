@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tester": "npx ts-node call_submitNumber.ts",
-    "deploy": "npx ts-node deploy.ts"
+    "call_submitNumber": "npx ts-node scripts/call_submitNumber.ts",
+    "deploy": "npx ts-node scripts/deploy.ts"
   },
   "author": "",
   "license": "ISC",

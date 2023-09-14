@@ -6,7 +6,7 @@ import { MichelsonMap, TezosToolkit } from "@taquito/taquito";
 import code from "../compile/lottery.json"
 import metadataJson from "./metadata.json"
 import * as dotenv from 'dotenv';
-dotenv.config(( { path: '../.env' } ));
+dotenv.config(( { path: '.env' } ));
 
 const TezosNodeRPC : string = process.env.TEZOS_NODE_URL
 const publicKey: string = process.env.ADMIN_PUBLIC_KEY;
@@ -23,7 +23,7 @@ Tezos.tz.getBalance(publicKey)
 // importKey(Tezos, privateKey)
 
 const saveContractAddress = (name: string, address: string) => {
-	outputFile(`deployments/${name}.ts`,
+	outputFile(`scripts/deployments/${name}.ts`,
 	`export default "${address}"`)
 }
 

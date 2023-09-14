@@ -22,7 +22,11 @@ ligo-test: lottery
 #####################
 
 run-deploy:
-	@npm --prefix ./scripts/ run deploy
+	@npm run deploy
+
+run-test-submitNumber:
+	@npm run call_submitNumber
+
 
 #####################
 
@@ -34,3 +38,9 @@ all: install ligo-compile ligo-test run-deploy
 
 install:
 	@npm --prefix ./scripts install
+
+sandbox-start:
+	@sh ./scripts/sandbox_start
+
+sandbox-stop:
+	@docker stop flextesa-sandbox
